@@ -1,5 +1,6 @@
-package br.com.jamalxvi.quake.parser.services;
+package br.com.jamalxvi.quake.parser.services.local.search;
 
+import br.com.jamalxvi.quake.parser.services.LocalSearchLoggerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

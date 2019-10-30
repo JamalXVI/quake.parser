@@ -1,7 +1,7 @@
 package br.com.jamalxvi.quake.parser.services;
 
 import br.com.jamalxvi.quake.parser.config.Translator;
-import br.com.jamalxvi.quake.parser.error.ResourceNotFound;
+import br.com.jamalxvi.quake.parser.error.ResourceNotFoundError;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class LocalSearchLoggerService {
      * definidas em application.properties
      *
      * @return o arquivo de log
-     * @throws ResourceNotFound: Erro do Tipo 404 caso não encontrar o arquivo de log
+     * @throws ResourceNotFoundError : Erro do Tipo 404 caso não encontrar o arquivo de log
      */
     public List<String> getResource() {
         try {
@@ -50,7 +50,7 @@ public class LocalSearchLoggerService {
             return lines;
         } catch (IOException e) {
             log.error("Error while loading file: {}", e);
-            throw new ResourceNotFound(Translator.toLocale("error.resource.not.found"));
+            throw new ResourceNotFoundError(Translator.toLocale("error.resource.not.found"));
         }
     }
 }

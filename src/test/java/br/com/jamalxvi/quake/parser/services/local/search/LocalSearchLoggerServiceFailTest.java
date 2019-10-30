@@ -1,6 +1,7 @@
-package br.com.jamalxvi.quake.parser.services;
+package br.com.jamalxvi.quake.parser.services.local.search;
 
-import br.com.jamalxvi.quake.parser.error.ResourceNotFound;
+import br.com.jamalxvi.quake.parser.error.ResourceNotFoundError;
+import br.com.jamalxvi.quake.parser.services.LocalSearchLoggerService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,11 @@ class LocalSearchLoggerServiceFailTest {
 
 
     /**
-     * Caso de Falha: Recurso não encontrado, espera um erro do tipo {@link ResourceNotFound}
+     * Caso de Falha: Recurso não encontrado, espera um erro do tipo {@link ResourceNotFoundError}
      */
     @Test
     void getResource_InvalidPath_ResourceNotFound() {
 
-        Assertions.assertThrows(ResourceNotFound.class, () ->localSearchLoggerService.getResource());
+        Assertions.assertThrows(ResourceNotFoundError.class, () ->localSearchLoggerService.getResource());
     }
 }
