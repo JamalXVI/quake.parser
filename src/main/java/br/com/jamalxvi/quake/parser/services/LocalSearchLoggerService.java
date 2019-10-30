@@ -1,4 +1,4 @@
-package br.com.jamalxvi.quake.parser.reader;
+package br.com.jamalxvi.quake.parser.services;
 
 import br.com.jamalxvi.quake.parser.error.ResourceNotFound;
 import lombok.extern.slf4j.Slf4j;

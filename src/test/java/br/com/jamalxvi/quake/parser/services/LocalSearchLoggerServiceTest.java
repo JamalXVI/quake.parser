@@ -1,15 +1,9 @@
-package br.com.jamalxvi.quake.parser.reader;
+package br.com.jamalxvi.quake.parser.services;
 
-import br.com.jamalxvi.quake.parser.error.ResourceNotFound;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.File;
 import java.util.List;
 
 import static org.springframework.test.util.AssertionErrors.assertTrue;

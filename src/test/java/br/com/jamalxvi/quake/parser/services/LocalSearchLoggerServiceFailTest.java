@@ -1,16 +1,11 @@
-package br.com.jamalxvi.quake.parser.reader;
+package br.com.jamalxvi.quake.parser.services;
 
 import br.com.jamalxvi.quake.parser.error.ResourceNotFound;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.TestPropertySource;
-
-import java.io.File;
-
-import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 @SpringBootTest
 @TestPropertySource(
