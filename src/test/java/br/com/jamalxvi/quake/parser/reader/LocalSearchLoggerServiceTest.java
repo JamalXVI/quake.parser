@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
+import java.util.List;
 
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
@@ -26,7 +27,9 @@ class LocalSearchLoggerServiceTest {
     @Test
     void getResource_AllValid_True() {
 
-        File file = localSearchLoggerService.getResource();
-        assertTrue("O arquivo não é nulo", file != null);
+        List<String> linhas = localSearchLoggerService.getResource();
+        assertTrue("O arquivo não é nulo", linhas != null);
+        assertTrue("O arquivo não está vazio", !linhas.isEmpty());
+        assertTrue("As linhas estão preenchidas", linhas.size() > 0);
     }
 }
