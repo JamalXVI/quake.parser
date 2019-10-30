@@ -1,5 +1,6 @@
 package br.com.jamalxvi.quake.parser.services;
 
+import br.com.jamalxvi.quake.parser.config.Translator;
 import br.com.jamalxvi.quake.parser.error.ResourceNotFound;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -49,7 +50,7 @@ public class LocalSearchLoggerService {
             return lines;
         } catch (IOException e) {
             log.error("Error while loading file: {}", e);
-            throw new ResourceNotFound("Recurso não encontrado!");
+            throw new ResourceNotFound(Translator.toLocale("error.resource.not.found"));
         }
     }
 }
