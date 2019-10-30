@@ -4,17 +4,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * Erro que define quando não for encontrado uma tradução
+ * Erro que define quando um jogo não for encontrado ou quando não existirem jogos no Log
  *
  * @author jamalxvi
  * @version 0.1
  * @since 0.1
  */
-@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-public class TranslationError extends RuntimeException {
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class NoGameFoundError extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
-    public TranslationError(String message) {
+    public NoGameFoundError(String message) {
         super(message);
     }
 }
