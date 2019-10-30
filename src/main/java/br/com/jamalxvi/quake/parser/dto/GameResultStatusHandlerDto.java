@@ -119,7 +119,7 @@ public class GameResultStatusHandlerDto {
    *
    * @return Verifica se o jogo <b>não</b> está no intervalo desejado
    */
-  private boolean isGameNotInRange() {
+  public boolean isGameNotInRange() {
     return game != ALL_GAMES && index != game;
   }
 

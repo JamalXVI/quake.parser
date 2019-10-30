@@ -149,6 +149,9 @@ public class GameResultService {
       }
       gameResultStatus.nextGame();
     } else {
+      if (gameResultStatus.isGameNotInRange()){
+        gameResultStatus.nextGame();
+      }
       log.warn("Não foi possível finalizar o jogo atual. Jogo: {}",
           gameResultStatus.getGameNumber());
     }

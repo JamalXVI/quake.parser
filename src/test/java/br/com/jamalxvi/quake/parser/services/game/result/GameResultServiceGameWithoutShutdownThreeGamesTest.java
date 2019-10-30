@@ -58,4 +58,28 @@ class GameResultServiceGameWithoutShutdownThreeGamesTest {
         assertTrue("Não deve existir jogadores", gameThree.getPlayers().size() == 0);
 
     }
+    /**
+     * Caso de sucesso: busca somente pelo segundo jogo
+     */
+    @Test
+    void parse_OnlySecondGame_Sucess() {
+        final Map<String, Integer> playerKills = new HashMap<>();
+        playerKills.put("Isgalamido", -5);
+        playerKills.put("Mocinha", 0);
+        final Integer totalKills = 11;
+        List<String> log = localSearchLoggerService.getResource();
+        Map<String, GameResults> gameResultsMap = gameResultService.parse(log, 2);
+        assertTrue("Não deve ser nulo", gameResultsMap != null);
+        assertTrue("Não deve estar vazio", !gameResultsMap.isEmpty());
+        assertTrue("O tamanho deve ser exatamente 1!", gameResultsMap.size() == 1);
+        GameResults game = gameResultsMap.get("game_2");
+        assertTrue("O Resultado do jogo 2 deve ser "+totalKills, game.getTotalKills() == totalKills);
+        assertTrue("Deve existir jogadores", game.getPlayers().size() == playerKills.size());
+        for (String player : playerKills.keySet()) {
+            assertTrue("O jogador deve constar no resultado", game.getPlayers().contains(player));
+            assertTrue("Ele deve constar no quadro de kills", game.getKills().get(player) != null);
+            assertTrue("O número de kills deve bater", game.getKills().get(player).equals(playerKills.get(player)));
+        }
+
+    }
 }
