@@ -3,12 +3,19 @@ package br.com.jamalxvi.quake.parser.services;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
 
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 @SpringBootTest
+@TestPropertySource(
+        properties = {
+                "base.uri=/static/test/",
+                "log.name=games.log"
+        }
+)
 class LocalSearchLoggerServiceTest {
 
     @Autowired
