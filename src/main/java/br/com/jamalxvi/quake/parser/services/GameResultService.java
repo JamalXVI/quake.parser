@@ -1,5 +1,17 @@
 package br.com.jamalxvi.quake.parser.services;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 import br.com.jamalxvi.quake.parser.config.Translator;
 import br.com.jamalxvi.quake.parser.domain.GameResults;
 import br.com.jamalxvi.quake.parser.dto.GameResultStatusHandlerDto;
@@ -7,18 +19,6 @@ import br.com.jamalxvi.quake.parser.error.InvalidGameError;
 import br.com.jamalxvi.quake.parser.error.NoGameFoundError;
 import br.com.jamalxvi.quake.parser.error.PlayerKilledError;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.TreeMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Slf4j
 @Service
@@ -48,6 +48,7 @@ public class GameResultService {
 
   /**
    * Transforma o log do jogo nos resultados do jogo
+   * 
    * @param lines as linhas do log
    * @param game o número do jogo, se não for definido, então busca todos os jogos
    * @return o resultado dos jogos
@@ -120,6 +121,7 @@ public class GameResultService {
 
   /**
    * Cria um novo jogo
+   * 
    * @param results lista de jogos
    * @param gameStatusHandler o estado do jogo atual
    */
@@ -135,6 +137,7 @@ public class GameResultService {
 
   /**
    * Finaliza o jogo
+   * 
    * @param results lista de jogos
    * @param gameResultStatus o estado do jogo atual
    */
@@ -145,13 +148,16 @@ public class GameResultService {
         results.put(gameResultStatus.getCurrentGame(), gameResultStatus.getGame());
       }
       gameResultStatus.nextGame();
-    }else{
-      log.warn("Não foi possível finalizar o jogo atual. Jogo: {}", gameResultStatus.getGameNumber());
+    } else {
+      log.warn("Não foi possível finalizar o jogo atual. Jogo: {}",
+          gameResultStatus.getGameNumber());
     }
   }
 
   /**
-   * Transforma o log do jogo nos resultados do jogo, nesta sobrecarga serão considerados todos os jogos
+   * Transforma o log do jogo nos resultados do jogo, nesta sobrecarga serão considerados todos os
+   * jogos
+   * 
    * @param lines as linhas do log
    * @return o resultado dos jogos
    * @see GameResults a entidade que define o resultado do jogo

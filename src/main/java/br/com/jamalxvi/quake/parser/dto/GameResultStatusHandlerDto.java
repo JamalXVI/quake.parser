@@ -3,6 +3,7 @@ package br.com.jamalxvi.quake.parser.dto;
 import br.com.jamalxvi.quake.parser.config.Translator;
 import br.com.jamalxvi.quake.parser.domain.GameResults;
 import br.com.jamalxvi.quake.parser.error.NoGameFoundError;
+import br.com.jamalxvi.quake.parser.util.MapUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -33,9 +34,9 @@ public class GameResultStatusHandlerDto {
   private Integer game = 0;
   private Optional<GameResults> gameResults = Optional.empty();
 
-  public GameResultStatusHandlerDto(String gameName, Integer game){
-      this.gameName = gameName;
-      this.game = game;
+  public GameResultStatusHandlerDto(String gameName, Integer game) {
+    this.gameName = gameName;
+    this.game = game;
   }
 
   /**
@@ -43,7 +44,15 @@ public class GameResultStatusHandlerDto {
    */
   public void nextGame() {
     index++;
+    sortPlayersByKills();
     gameEnded = true;
+  }
+
+  /**
+   * Ordena os jogadores pelo número de mortes
+   */
+  private void sortPlayersByKills() {
+    getGame().setKills(MapUtil.sortByValue(getGame().getKills()));
   }
 
   /**
@@ -57,14 +66,16 @@ public class GameResultStatusHandlerDto {
 
   /**
    * Verifica se o jogo atual é o primeiro jogo
+   * 
    * @return Boolean: True se sim, False se não
    */
-  public Boolean isTheFirstGame(){
+  public Boolean isTheFirstGame() {
     return FIRST_GAME >= index;
   }
 
   /**
    * Retorna o nome do jogo atual
+   * 
    * @return
    */
   public String getCurrentGame() {
@@ -73,6 +84,7 @@ public class GameResultStatusHandlerDto {
 
   /**
    * Retorna o número do jogo
+   * 
    * @return Integer: o número do jogo
    */
   public Integer getGameNumber() {
@@ -81,22 +93,24 @@ public class GameResultStatusHandlerDto {
 
   /**
    * Retorna se o jogo é válido ou não
+   * 
    * @return
    */
-  public Boolean isGameNotValid(){
-      return game != ALL_GAMES && game <= 0;
+  public Boolean isGameNotValid() {
+    return game != ALL_GAMES && game <= 0;
   }
 
 
   /**
    * Verifica se o jogo em questão é o jogo que está no indice atual
+   * 
    * @return
    */
   public Boolean isAValidGameAndIsInTheCurrentGame() {
     return !isGameNotInRange() && !isGameEnded();
   }
 
-  public void newGame(){
+  public void newGame() {
     gameEnded = Boolean.FALSE;
     gameResults = Optional.of(new GameResults());
   }
@@ -113,15 +127,16 @@ public class GameResultStatusHandlerDto {
    *
    * @return Retorna o jogo atual
    */
-  public GameResults getGame(){
-    return gameResults.orElseThrow(() -> new NoGameFoundError(Translator.toLocale("error.game.not.found")));
+  public GameResults getGame() {
+    return gameResults
+        .orElseThrow(() -> new NoGameFoundError(Translator.toLocale("error.game.not.found")));
   }
 
   /**
    *
    * @return Verifica se existe algum jogo em memória
    */
-  public Boolean doesTheGameExists(){
+  public Boolean doesTheGameExists() {
     return gameResults.isPresent();
   }
 }
