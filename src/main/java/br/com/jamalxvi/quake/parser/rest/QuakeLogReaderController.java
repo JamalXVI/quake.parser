@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Controlador de Funcionalidades de Leitura de Log: Controller que é responsável por retornar a leitura do log
+ */
 @RestController
 @RequestMapping(value = "/api/services", produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j

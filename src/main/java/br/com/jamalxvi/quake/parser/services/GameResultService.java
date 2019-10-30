@@ -20,6 +20,15 @@ import br.com.jamalxvi.quake.parser.error.NoGameFoundError;
 import br.com.jamalxvi.quake.parser.error.PlayerKilledError;
 import lombok.extern.slf4j.Slf4j;
 
+
+/**
+ * Serviço de leitura de logs e transformação em objeto: Faz a leitura do log para assim transforma-lo no resultado
+ * desejado
+ *
+ * @author jamalxvi
+ * @version 0.1
+ * @since 0.1
+ */
 @Slf4j
 @Service
 public class GameResultService {
